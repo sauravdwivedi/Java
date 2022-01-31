@@ -4,6 +4,8 @@ This is a Maven project that provides an implementation of the Football World Cu
 
 #### Run application @CL
 
+> Clone the repository, cd to project dir
+
 > mvn clean compile package
 
 > java -jar target/dwivedi-1.0-SNAPSHOT.jar
