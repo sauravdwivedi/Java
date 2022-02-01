@@ -32,6 +32,6 @@ This is a Maven project that provides an implementation of the Football World Cu
 
 #### Run application @Cloud
 
-> http://gitpod.io/#https://github.com/sauravdwivedi/Sportradar
+> http://gitpod.io/#https://github.com/sauravdwivedi/Java/tree/main/FootballScoreBoard
 
 pom.xml file takes care of dependencies required for Junit 5 tests. First line in input file 'FootballScoreBoard_input.txt' refers to number of matches. Following lines in input file refer to home team, away team, home team's score and away team's score, seperated by ','. Project takes care of any extra spaces in the input file. 
