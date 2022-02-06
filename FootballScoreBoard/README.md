@@ -30,6 +30,6 @@ This is a Maven application based on Model View Controller architecture, that pr
 
 #### Run application @Cloud
 
-> http://gitpod.io/#https://github.com/sauravdwivedi/ModelViewController
+> http://gitpod.io/#https://github.com/sauravdwivedi/Java/tree/main/FootballScoreBoard
 
 pom.xml file takes care of dependencies required for Junit 5 tests.
