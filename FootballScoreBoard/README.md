@@ -1,6 +1,4 @@
-This is a Maven project that provides an implementation of the Football World Cup Score Board. 
-
-- ### CL
+This is a Maven application based on Model View Controller architecture, that provides an implementation of the Football World Cup Score Board. The game starts with capturing home team and away team names, with initial scoreboard 0 - 0, and updates scoreboard by capturing teams' scores. Finally app clears score board and finishes a game. The summary of games is listed by highest total scores. In case of total score clash, most recent game listed appears first.
 
 #### Run application @CL
 
@@ -32,6 +30,6 @@ This is a Maven project that provides an implementation of the Football World Cu
 
 #### Run application @Cloud
 
-> http://gitpod.io/#https://github.com/sauravdwivedi/Java/tree/main/FootballScoreBoard
+> http://gitpod.io/#https://github.com/sauravdwivedi/ModelViewController
 
-pom.xml file takes care of dependencies required for Junit 5 tests. First line in input file 'FootballScoreBoard_input.txt' refers to number of matches. Following lines in input file refer to home team, away team, home team's score and away team's score, seperated by ','. Project takes care of any extra spaces in the input file. 
+pom.xml file takes care of dependencies required for Junit 5 tests.
