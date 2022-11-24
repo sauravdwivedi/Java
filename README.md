@@ -1,16 +1,28 @@
-# A collection of Java programms I wrote for practice.
+# A collection of Java programms I wrote for practice
 
-Program/problem description is given as doc comment on top of each program.
+## Project description
 
-I write code to solve problems from:
+A collection of coding challenge solutions written in Java. Coding challenge description is given as _doc comments_ on top of each program. I write codes to solve problems from:
 
 - https://www.hackerrank.com/
 - https://code-exercises.com/
 
-## How to run
+## Execution
 
-> Go to directory where script is saved
+### Clone repository  
 
-> % javac <script_name>.java
+```bash
+$ gh repo clone sauravdwivedi/Java
+```
 
-> % java <script_name>
+### Run code
+
+```bash
+$ cd Java
+$ javac <script_name>.java
+$ java <script_name>
+```
+
+### Java Style guide
+
+- https://google.github.io/styleguide/javaguide.html

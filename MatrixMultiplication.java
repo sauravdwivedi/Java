@@ -1,5 +1,6 @@
-/** Write a method to read two matrices from StdIn and print
- *  their product matrix.
+/**
+ * Write a method to read two integer matrices from StdIn and print
+ * their product matrix.
  */
 
 import java.io.*;
@@ -7,19 +8,46 @@ import java.util.*;
 import java.util.stream.*;
 
 class MatrixMultiplication {
+  String name;
+  int rows;
+  int cols;
+  int[][] matrix;
+
+  void setMatrix() {
+    try {
+      Scanner scan = new Scanner(System.in);
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      System.out.printf("Matrix %s rows: ", this.name);
+      int rows = scan.nextInt();
+      System.out.printf("Matrix %s cols: ", this.name);
+      int cols = scan.nextInt();
+      System.out.printf("Space separated Matrix %s entries (e.g. '1 2 3'): ", this.name);
+      int[] matRaw = Arrays.stream(br.readLine().trim().split(" "))
+          .mapToInt(Integer::parseInt).toArray();
+      int[][] mat = new int[rows][cols];
+      for (int i = 0; i < rows; i++) {
+        mat[i] = Arrays.copyOfRange(matRaw, i * cols, i * cols + cols);
+      }
+      this.rows = rows;
+      this.cols = cols;
+      this.matrix = mat;
+    } catch (Exception e) {
+      System.out.println(e);
+      System.out.println("Caught an error. Please try again!");
+      this.setMatrix();
+    }
+  }
+
   static int[][] matMult(
-    int[][] matA,
-    int[][] matB,
-    int rowsA,
-    int colsA,
-    int colsB) {
-    int[][] prodMat = new int[rowsA][colsB];
-    for (int i = 0; i < rowsA; i++) {
-      int[] prodMatRow = new int[colsB];
-      for (int j = 0; j < colsB; j++) {
+      MatrixMultiplication matA,
+      MatrixMultiplication matB) {
+    int[][] prodMat = new int[matA.rows][matB.cols];
+    for (int i = 0; i < matA.rows; i++) {
+      int[] prodMatRow = new int[matB.cols];
+      for (int j = 0; j < matB.cols; j++) {
         int prodMatIJ = 0;
-        for (int k = 0; k < colsA; k++) {
-          prodMatIJ += matA[i][k] * matB[k][j];
+        for (int k = 0; k < matA.cols; k++) {
+          prodMatIJ += matA.matrix[i][k] * matB.matrix[k][j];
         }
         prodMatRow[j] = prodMatIJ;
       }
@@ -27,37 +55,19 @@ class MatrixMultiplication {
     }
     return prodMat;
   }
-  
-  public static void main(String[] args) throws IOException {
-    Scanner scan = new Scanner(System.in);
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println("Matrix A rows: ");
-    int rowsA = scan.nextInt();
-    System.out.println("Matrix A cols: ");
-    int colsA = scan.nextInt();
-    System.out.println("Space separated Matrix A entries (e.g. '1 2 3'): ");
-    int[] matARaw = Arrays.stream(br.readLine().trim().split(" "))
-      .mapToInt(Integer::parseInt).toArray();
-    int[][] matA = new int[rowsA][colsA];
-    for (int i = 0; i < rowsA; i++) {
-      matA[i] = Arrays.copyOfRange(matARaw, i*colsA, i*colsA + colsA);
-    }
-    System.out.println("Matrix B rows: ");
-    int rowsB = scan.nextInt();
-    System.out.println("Matrix B cols: ");
-    int colsB = scan.nextInt();
-    System.out.println("Space separated Matrix B entries (e.g. '1 2 3'): ");
-    int[] matBRaw = Arrays.stream(br.readLine().trim().split(" "))
-      .mapToInt(Integer::parseInt).toArray();
-    int[][] matB = new int[rowsB][colsB];
-    for (int i = 0; i < rowsB; i++) {
-      matB[i] = Arrays.copyOfRange(matBRaw, i*colsB, i*colsB + colsB);
-    }
-    if (colsA == rowsB) {
+
+  public static void main(String[] args) {
+    MatrixMultiplication matA = new MatrixMultiplication();
+    matA.name = "A";
+    matA.setMatrix();
+    MatrixMultiplication matB = new MatrixMultiplication();
+    matB.name = "B";
+    matB.setMatrix();
+    if (matA.cols == matB.rows) {
       System.out.println("The product Matrix is: ");
-      int[][] prodMat = matMult(matA, matB, rowsA, colsA, colsB);
+      int[][] prodMat = matMult(matA, matB);
       String result = "";
-      for (int i = 0; i < rowsA; i++) {
+      for (int i = 0; i < matA.rows; i++) {
         result += "\t" + Arrays.toString(prodMat[i]) + "\n";
       }
       System.out.println(result);
